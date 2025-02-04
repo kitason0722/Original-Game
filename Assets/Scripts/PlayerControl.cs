@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Callbacks;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField]int hp = 10;//プレイヤーのHP
     private const float rotatespeed = 4.0f;//回転速度
     private const float movespeed = 3.0f;//移動速度
+    private const float maxspped = 4.0f;//最高移動速度
+    GameObject[] hpgauge = new GameObject[11];
     private Rigidbody2D rigid2D;
     enum State
     {
@@ -46,7 +49,7 @@ public class PlayerControl : MonoBehaviour
         if(Input.GetKey(KeyCode.W))
             {
                 rigid2D.AddForce(transform.up * movespeed);
-                speed = rigid2D.velocity.magnitude;
+                if(speed > maxspped) speed = maxspped;
                 Debug.Log(speed);
             }
             if(Input.GetKey(KeyCode.S))
