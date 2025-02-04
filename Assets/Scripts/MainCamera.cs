@@ -7,6 +7,6 @@ public class MainCamera : MonoBehaviour
     [SerializeField] Transform player;
     private void Update()
     {
-        transform.position = new Vector3(player.position.x,player.position.y,-10f);
+        transform.position = new Vector3(player.position.x,player.position.y+2,-10f);
     }
 }
