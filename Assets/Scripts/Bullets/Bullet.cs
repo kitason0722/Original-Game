@@ -7,7 +7,6 @@ public class Bullet : MonoBehaviour
     protected float bulletspeed = 10.0f;//弾速
     private float lifetime = 0.0f;//弾の生存時間
     private const float maxlifetime = 2.0f;//弾の最大生存時間
-    private float interval = 0.5f;//弾の発射のインターバル
     private Rigidbody2D rigid2D;
     public BulletPool bulletPool;
     void Start()
@@ -30,12 +29,7 @@ public class Bullet : MonoBehaviour
     //弾の撃ち出し
     public void Fire()
     {
-        interval += Time.deltaTime;
-        if(interval >= 0.5f)
-        {
-            rigid2D.velocity = transform.up.normalized * bulletspeed;
-            interval = 0.0f;
-        }
+        rigid2D.velocity = transform.up.normalized * bulletspeed;
     }
 
     //弾の削除
@@ -47,5 +41,11 @@ public class Bullet : MonoBehaviour
             bulletPool.CollectBullet(this);
             lifetime = 0.0f;
         }
+    }
+
+    //衝突時の処理
+    protected void OnCollisionEnter2D()
+    {
+        bulletPool.CollectBullet(this);
     }
 }

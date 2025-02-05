@@ -87,4 +87,9 @@ public class PlayerControl : MonoBehaviour
             bulletPool.GetBullet(bulletposition.transform.position,transform.rotation);
         }
     }
+
+    protected void OnCollisionEnter2D(Collision2D obj)
+    {
+        if(obj.gameObject.CompareTag("Bullet"))hp -= 1;
+    }
 }
