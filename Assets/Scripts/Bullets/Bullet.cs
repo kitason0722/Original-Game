@@ -4,9 +4,9 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 public class Bullet : MonoBehaviour
 {
-    protected float bulletspeed = 10.0f;//弾速
+    protected float bulletspeed = 16.0f;//弾速
     private float lifetime = 0.0f;//弾の生存時間
-    private const float maxlifetime = 2.0f;//弾の最大生存時間
+    private const float maxlifetime = 1.5f;//弾の最大生存時間
     private Rigidbody2D rigid2D;
     public BulletPool bulletPool;
     void Start()
@@ -44,8 +44,12 @@ public class Bullet : MonoBehaviour
     }
 
     //衝突時の処理
-    protected void OnCollisionEnter2D()
+    protected void OnCollisionEnter2D(Collision2D obj)
     {
-        bulletPool.CollectBullet(this);
+        if(obj.gameObject.CompareTag("Wall"))
+        {
+            bulletPool.CollectBullet(this);
+        }
+        else bulletPool.CollectBullet(this);
     }
 }
