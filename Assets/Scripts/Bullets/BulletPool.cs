@@ -17,8 +17,9 @@ public class BulletPool : MonoBehaviour
 
         for(int i = 0;i < poolsize;i++)
         {
-            instance = Instantiate(bulletprefab);
+            instance = Instantiate(bulletprefab,transform);
             instance.gameObject.SetActive(false);
+            instance.name = $"{instance.name}_{i}";
             instance.GetComponent<Bullet>().bulletPool = this;
             bulletpool.Enqueue(instance);
         }

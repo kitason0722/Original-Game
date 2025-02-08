@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HpgaugeDisplay : MonoBehaviour
 {
-    [SerializeField] PlayerControl playerControl;
+    [SerializeField] private PlayerControl playerControl;
     GameObject hpgauge0,hpgauge1,hpgauge2,hpgauge3,hpgauge4,hpgauge5,
     hpgauge6,hpgauge7,hpgauge8,hpgauge9,hpgauge10;
     void Start()
