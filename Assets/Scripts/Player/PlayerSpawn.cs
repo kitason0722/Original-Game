@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSpawn : MonoBehaviour
 {
     [SerializeField] private GameObject playerprefab;
-    private int playersize = 8;//プレイヤーの数
+    private int playersize = 4;//プレイヤーの数
     private void Awake()
     {
         for(int i = 0;i < playersize;i++)
