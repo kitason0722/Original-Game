@@ -14,6 +14,7 @@ public class PlayerControl : MonoBehaviour
     private float interval = 0.0f;//弾を打つまでのインターバルのカウント変数
     private float shotinterval = 0.5f;//弾を打つまでのインターバル
     public bool isPlayer = true;//プレイヤーかどうか
+    public bool isRuby = true;//チームの判別
     public Vector3 dir;//プレイヤーが向いている方向
     private float _deathinterval = 0.0f;//死亡時のインターバルのカウント変数
     private float deathinterval = 3.0f;//死亡時のインターバル
@@ -33,12 +34,6 @@ public class PlayerControl : MonoBehaviour
         Dead
     }
 
-    public enum Team//プレイヤーのチーム
-    {
-        Ruby,
-        Sapphire
-    }
-    public Team team = Team.Ruby;
     private State state = State.Active;
 
     void Awake()
@@ -175,7 +170,7 @@ public class PlayerControl : MonoBehaviour
 
     protected void Shot()
     {
-        bulletPool.GetBullet(bulletposition.transform.position,transform.rotation);
+        bulletPool.GetBullet(bulletposition.transform.position,transform.rotation,isRuby);
     }
 
     public void SetBulletPool(BulletPool pool)
@@ -187,11 +182,22 @@ public class PlayerControl : MonoBehaviour
     {
         if(obj.gameObject.CompareTag("Bullet"))
         {
-            hp -= 1;
-            if(hp <= 0)
+            //弾のチーム判別を行う
+            Bullet bullet = obj.gameObject.GetComponent<Bullet>();
+
+            if(bullet == null)
             {
-                hp = 0;
-                state = State.Dead;
+                Debug.LogError("Bulletコンポーネントが見つかりません。");
+            }
+
+            if ((isRuby == true && bullet.isRuby_bullet == false) || (isRuby == false && bullet.isRuby_bullet == true))
+            {
+                hp -= 1;
+                if (hp <= 0)
+                {
+                    hp = 0;
+                    state = State.Dead;
+                }
             }
         }
 

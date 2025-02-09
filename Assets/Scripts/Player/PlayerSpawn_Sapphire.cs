@@ -30,7 +30,7 @@ public class PlayerSpawn_Sapphire : MonoBehaviour
 
             //プレイヤーの変数の設定
             PlayerControl playerControl = instance.GetComponent<PlayerControl>();
-            playerControl.team = PlayerControl.Team.Sapphire;
+            playerControl.isRuby = false;
             playerControl.isPlayer = false;
 
             //プレイヤーを生成した後に弾のプールをセット

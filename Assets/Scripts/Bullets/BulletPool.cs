@@ -26,16 +26,20 @@ public class BulletPool : MonoBehaviour
     }
 
     //プールから弾を取り出す
-    public Bullet GetBullet(Vector3 pos,Quaternion rot)
+    public Bullet GetBullet(Vector3 pos,Quaternion rot,bool isRuby)
     {
         if(bulletpool.Count <= 0)
         {
-            Debug.LogError("プール内にオブジェクトが存在しません。");
+            Debug.LogError("プール内に弾が存在しません。");
             return null;
         }
         Bullet bullet = bulletpool.Dequeue();
         bullet.gameObject.SetActive(true);
+
         bullet.BulletPosition(pos,rot);
+        if(isRuby) bullet.isRuby_bullet = true;
+        else bullet.isRuby_bullet = false;
+
         return bullet;
     }
 

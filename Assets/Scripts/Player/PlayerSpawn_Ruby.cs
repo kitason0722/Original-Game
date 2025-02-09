@@ -30,7 +30,7 @@ public class PlayerSpawn_Ruby : MonoBehaviour
 
             //プレイヤーの変数の設定
             PlayerControl playerControl = instance.GetComponent<PlayerControl>();
-            playerControl.team = PlayerControl.Team.Ruby;
+            playerControl.isRuby = true;
             if (i==0)playerControl.isPlayer = true;
             else playerControl.isPlayer = false;
 
