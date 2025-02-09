@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HpgaugeDisplay : MonoBehaviour
 {
-    [SerializeField] private PlayerControl playerControl;
+    private PlayerControl player;
     GameObject hpgauge0,hpgauge1,hpgauge2,hpgauge3,hpgauge4,hpgauge5,
     hpgauge6,hpgauge7,hpgauge8,hpgauge9,hpgauge10;
     void Start()
@@ -21,46 +21,63 @@ public class HpgaugeDisplay : MonoBehaviour
         hpgauge8 = transform.GetChild(8).gameObject;
         hpgauge9 = transform.GetChild(9).gameObject;
         hpgauge10 = transform.GetChild(10).gameObject;
+
+        PlayerControl[] players = FindObjectsOfType<PlayerControl>();//生成されたプレイヤーを全て取得
+
+        //isPlayerがtrueのプレイヤーを取得
+        foreach (PlayerControl p in players)
+        {
+            if (p.isPlayer)
+            {
+                player = p;
+                break;
+            }
+        }
+
+        if (player == null)
+        {
+            Debug.LogError("isPlayerがtrueのプレイヤーが見つかりません。");
+        }
     }
 
-    void FixedUpdate()
+    private void Update()
     {
         Display();
     }
 
     private void Display()
     {
-        if(playerControl.hp == 0)hpgauge0.SetActive(true);
+        if(player.hp == 0)hpgauge0.SetActive(true);
         else hpgauge0.SetActive(false);
         
-        if(playerControl.hp == 1)hpgauge1.SetActive(true);
+        if(player.hp == 1)hpgauge1.SetActive(true);
         else hpgauge1.SetActive(false);
 
-        if(playerControl.hp == 2)hpgauge2.SetActive(true);
+        if(player.hp == 2)hpgauge2.SetActive(true);
         else hpgauge2.SetActive(false);
 
-        if(playerControl.hp == 3)hpgauge3.SetActive(true);
+        if(player.hp == 3)hpgauge3.SetActive(true);
         else hpgauge3.SetActive(false);
 
-        if(playerControl.hp == 4)hpgauge4.SetActive(true);
+        if(player.hp == 4)hpgauge4.SetActive(true);
         else hpgauge4.SetActive(false);
 
-        if(playerControl.hp == 5)hpgauge5.SetActive(true);
+        if(player.hp == 5)hpgauge5.SetActive(true);
         else hpgauge5.SetActive(false);
 
-        if(playerControl.hp == 6)hpgauge6.SetActive(true);
+        if(player.hp == 6)hpgauge6.SetActive(true);
         else hpgauge6.SetActive(false);
 
-        if(playerControl.hp == 7)hpgauge7.SetActive(true);
+        if(player.hp == 7)hpgauge7.SetActive(true);
         else hpgauge7.SetActive(false);
 
-        if(playerControl.hp == 8)hpgauge8.SetActive(true);
+        if(player.hp == 8)hpgauge8.SetActive(true);
         else hpgauge8.SetActive(false);
 
-        if(playerControl.hp == 9)hpgauge9.SetActive(true);
+        if(player.hp == 9)hpgauge9.SetActive(true);
         else hpgauge9.SetActive(false);
 
-        if(playerControl.hp == 10)hpgauge10.SetActive(true);
+        if(player.hp == 10)hpgauge10.SetActive(true);
         else hpgauge10.SetActive(false);
     }
 }

@@ -41,17 +41,17 @@ public class PlayerControl : MonoBehaviour
 
     private void Update()
     {
-        //HPゲージ確認用
-        //if(Input.GetKeyDown(KeyCode.O)) if(hp > 0)hp--;
-        //if(Input.GetKeyDown(KeyCode.P)) if(hp < 10)hp++;
-
         dir = transform.up.normalized;//プレイヤーの向いている方向を常に取得
         interval += Time.deltaTime;//時間の計測
 
         //プレイヤーの処理
         if(isPlayer)
         {
-            switch(state)
+            //HPゲージ確認用
+            if (Input.GetKeyDown(KeyCode.O)) if (hp > 0) hp--;
+            if (Input.GetKeyDown(KeyCode.P)) if (hp < 10) hp++;
+
+            switch (state)
             {
                 case State.Active:
                 Move();
