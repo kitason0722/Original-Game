@@ -17,8 +17,16 @@ public class PlayerSpawn_Sapphire : MonoBehaviour
             Vector3 spawnpos = new Vector3(randompos.x, randompos.y, 0) + transform.position;
 
             //プレイヤーの生成
-            GameObject instance = Instantiate(playerprefab, spawnpos, transform.rotation);
+            GameObject instance = Instantiate(playerprefab, spawnpos, transform.rotation,transform);
             instance.name = $"{playerprefab.name}_{i}";
+
+            //ローカルスケールをリセット
+            instance.transform.localScale = Vector3.one;
+
+            // ワールドスケールをリセット
+            instance.transform.SetParent(null, true);
+            instance.transform.localScale = playerprefab.transform.localScale;
+            instance.transform.SetParent(transform, true);
 
             //プレイヤーの変数の設定
             PlayerControl playerControl = instance.GetComponent<PlayerControl>();
