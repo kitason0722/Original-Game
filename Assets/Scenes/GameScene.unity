@@ -1692,6 +1692,14 @@ PrefabInstance:
       value: PlayerSpawn_1
       objectReference: {fileID: 0}
     - target: {fileID: 8590985325391953314, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590985325391953314, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590985325391953314, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
       objectReference: {fileID: 0}
@@ -1732,8 +1740,52 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8810592201269008810, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810592201269008810, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
+      propertyPath: ShapeModule.type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810592201269008810, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
+      propertyPath: ShapeModule.arc.mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810592201269008810, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
+      propertyPath: RotationModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810592201269008810, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
+      propertyPath: ShapeModule.arc.spread
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810592201269008810, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
+      propertyPath: VelocityModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810592201269008810, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
+      propertyPath: ClampVelocityModule.dampen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810592201269008810, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
+      propertyPath: ClampVelocityModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810592201269008810, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
+      propertyPath: RotationModule.curve.scalar
+      value: 0.5235988
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810592201269008810, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810592201269008810, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
+      propertyPath: ShapeModule.arc.speed.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810592201269008810, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
-      value: 0.7058824
+      value: 0.1254902
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
