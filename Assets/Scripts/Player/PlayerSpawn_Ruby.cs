@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSpawn : MonoBehaviour
+public class PlayerSpawn_Ruby : MonoBehaviour
 {
     [SerializeField] private GameObject playerprefab;//プレイヤーのプレハブ
     [SerializeField] private BulletPool bulletPool;//弾のプール
@@ -22,7 +22,8 @@ public class PlayerSpawn : MonoBehaviour
 
             //プレイヤーの変数の設定
             PlayerControl playerControl = instance.GetComponent<PlayerControl>();
-            if(i==0)playerControl.isPlayer = true;
+            playerControl.team = PlayerControl.Team.Ruby;
+            if (i==0)playerControl.isPlayer = true;
             else playerControl.isPlayer = false;
 
             //プレイヤーを生成した後に弾のプールをセット

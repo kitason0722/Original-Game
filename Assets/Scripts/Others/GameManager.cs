@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     private GameObject Timer;//タイマーUI
     Text timertext;//タイマーのテキスト
-    private float timer = 15;//ゲームの制限時間
+    private float timer = 120;//ゲームの制限時間
     private float idletime = 2.0f;//ゲーム終了後の待機時間
 
     private void Start()

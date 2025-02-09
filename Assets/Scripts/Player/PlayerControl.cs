@@ -26,12 +26,19 @@ public class PlayerControl : MonoBehaviour
     public GameObject bulletposition;
     private Rigidbody2D rigid2D;
 
-    enum State//プレイヤーの状態
+     private enum State//プレイヤーの状態
     {
         Active,
         Idle,
         Dead
     }
+
+    public enum Team//プレイヤーのチーム
+    {
+        Ruby,
+        Sapphire
+    }
+    public Team team = Team.Ruby;
     private State state = State.Active;
 
     void Awake()
