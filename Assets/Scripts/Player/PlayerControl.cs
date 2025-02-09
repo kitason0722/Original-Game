@@ -22,7 +22,7 @@ public class PlayerControl : MonoBehaviour
     private float cycle = 0.5f;//点滅の周期
     [SerializeField] private Renderer flash;//点滅用の変数
 
-    [SerializeField] BulletPool bulletPool;
+    private BulletPool bulletPool;
     public GameObject bulletposition;
     private Rigidbody2D rigid2D;
 
@@ -99,15 +99,15 @@ public class PlayerControl : MonoBehaviour
             switch(state)
             {
                 case State.Active:
-                Move();
-                if(Input.GetKeyDown(KeyCode.Space))
-                {
-                    if(interval > shotinterval)
-                    {
-                        Shot();
-                        interval = 0.0f;
-                    }
-                }
+                //Move();
+                //if(Input.GetKeyDown(KeyCode.Space))
+                //{
+                //    if(interval > shotinterval)
+                //    {
+                //        Shot();
+                //        interval = 0.0f;
+                //    }
+                //}
                 break;
 
                 case State.Dead:
@@ -169,6 +169,11 @@ public class PlayerControl : MonoBehaviour
     protected void Shot()
     {
         bulletPool.GetBullet(bulletposition.transform.position,transform.rotation);
+    }
+
+    public void SetBulletPool(BulletPool pool)
+    {
+        bulletPool = pool;
     }
 
     protected void OnCollisionEnter2D(Collision2D obj)

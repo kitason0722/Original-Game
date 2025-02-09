@@ -4897,3 +4897,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerprefab: {fileID: 4496971953925962233, guid: 35ad5e49b4f8b104f872a849a749673f, type: 3}
+  bulletPool: {fileID: 8881635993476549463, guid: 91ee5129f2191db4882f8c9ac249f5d9, type: 3}
