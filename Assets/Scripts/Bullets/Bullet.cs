@@ -5,17 +5,17 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     protected float bulletspeed = 12.0f;//弾速
-    private float lifetime = 0.0f;//弾の生存時間
-    private const float maxlifetime = 1.0f;//弾の最大生存時間
+    protected float lifetime = 0.0f;//弾の生存時間
+    protected float maxlifetime = 1.0f;//弾の最大生存時間
     public bool isRuby_bullet = true;//チームの判別
     private Rigidbody2D rigid2D;
     public BulletPool bulletPool;
-    void Start()
+    protected void Start()
     {
         rigid2D = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    public virtual void Update()
     {
         Fire();
         Delete();
@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
     }
 
     //弾の撃ち出し
-    public void Fire()
+    public virtual void Fire()
     {
         rigid2D.velocity = transform.up.normalized * bulletspeed;
     }
@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
     }
 
     //衝突時の処理
-    protected void OnCollisionEnter2D(Collision2D obj)
+    protected virtual void OnCollisionEnter2D(Collision2D obj)
     {
         if(obj.gameObject.CompareTag("Wall"))
         {
