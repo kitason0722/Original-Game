@@ -6,8 +6,12 @@ public class Base_Sapphire : MonoBehaviour
 {
     public int hp = 30;//基地のHP
     private int hitcount = 0;//被弾した回数
-    private bool isRuby = false;//チームの判別
-    
+    [SerializeField]private bool isRuby = false;//チームの判別
+    [SerializeField] private float rad = 10.0f;//検知できる範囲
+    [SerializeField] private BulletPool bulletPool;
+    [SerializeField] private float shotinterval = 0.5f;//弾を打つまでのインターバル
+    private float shottimer = 0.0f;//弾を打つまでのインターバルのカウント変数
+
     void Start()
     {
         
@@ -15,7 +19,20 @@ public class Base_Sapphire : MonoBehaviour
     
     void Update()
     {
-        
+        shottimer += Time.deltaTime;
+        if(shottimer > shotinterval)
+        {
+            foreach(Transform playerspos in PlayerSpawn_Ruby.playerspos)
+            {
+                float distance = Vector3.Distance(transform.position,playerspos.position);
+                if(distance <= rad)
+                {
+                    bulletPool.GetBullet(playerspos.position, Quaternion.identity, isRuby);
+                    shottimer = 0.0f;
+                    break;
+                }
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D obj)

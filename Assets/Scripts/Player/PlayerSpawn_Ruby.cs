@@ -8,6 +8,9 @@ public class PlayerSpawn_Ruby : MonoBehaviour
     [SerializeField] private BulletPool bulletPool;//弾のプール
     [SerializeField] private float radius = 3.0f;//プレイヤーの生成半径
     private int playersize = 4;//プレイヤーの数
+
+    public static List<Transform> playerspos = new List<Transform>();
+
     private void Awake()
     {
         for(int i = 0;i < playersize;i++)
@@ -43,6 +46,9 @@ public class PlayerSpawn_Ruby : MonoBehaviour
             {
                 Debug.LogError("PlayerControlコンポーネントが見つかりません。");
             }
+
+            //プレイヤーの位置をリストに追加
+            playerspos.Add(instance.transform);
         }
     }
 }
