@@ -682,9 +682,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8316494273809686457, guid: 2b80025b3e24df941b59b69d356fdb22, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9157700034925441332, guid: 2b80025b3e24df941b59b69d356fdb22, type: 3}
       propertyPath: m_Name
       value: Base_Ruby
+      objectReference: {fileID: 0}
+    - target: {fileID: 9157700034925441332, guid: 2b80025b3e24df941b59b69d356fdb22, type: 3}
+      propertyPath: m_TagString
+      value: Base
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1709,6 +1717,14 @@ PrefabInstance:
     - target: {fileID: 2129629182592884906, guid: 1c58a2c2215800b48ba458d9ae45fb50, type: 3}
       propertyPath: m_Name
       value: Base_Sapphire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129629182592884906, guid: 1c58a2c2215800b48ba458d9ae45fb50, type: 3}
+      propertyPath: m_TagString
+      value: Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594842673952262075, guid: 1c58a2c2215800b48ba458d9ae45fb50, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

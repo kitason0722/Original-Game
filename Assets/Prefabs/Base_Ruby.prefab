@@ -136,9 +136,10 @@ GameObject:
   - component: {fileID: 6881092493734301280}
   - component: {fileID: 3889546694262972055}
   - component: {fileID: 8316494273809686457}
+  - component: {fileID: 7628397395257848004}
   m_Layer: 0
   m_Name: Base_Ruby
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,3 +287,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 15.227254, y: 5.0248117}
   m_EdgeRadius: 0
+--- !u!114 &7628397395257848004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9157700034925441332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47e2cc9f0abc7447914760164b6efe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 30
