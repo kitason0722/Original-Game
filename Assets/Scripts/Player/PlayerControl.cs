@@ -50,8 +50,8 @@ public class PlayerControl : MonoBehaviour
         if(isPlayer)
         {
             //HPゲージ確認用
-            if (Input.GetKeyDown(KeyCode.O)) if (hp > 0) hp--;
-            if (Input.GetKeyDown(KeyCode.P)) if (hp < 10) hp++;
+            //if (Input.GetKeyDown(KeyCode.O)) if (hp > 0) hp--;
+            //if (Input.GetKeyDown(KeyCode.P)) if (hp < 10) hp++;
 
             switch (state)
             {
@@ -168,6 +168,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    //弾の撃ち出し
     protected void Shot()
     {
         bulletPool.GetBullet(bulletposition.transform.position,transform.rotation,isRuby);

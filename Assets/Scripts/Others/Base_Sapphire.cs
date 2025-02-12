@@ -10,7 +10,10 @@ public class Base_Sapphire : MonoBehaviour
     [SerializeField] private float rad = 10.0f;//検知できる範囲
     [SerializeField] private BulletPool bulletPool;
     [SerializeField] private float shotinterval = 0.5f;//弾を打つまでのインターバル
-    private float shottimer = 0.0f;//弾を打つまでのインターバルのカウント変数
+    //各発射位置の弾を打つまでのインターバルのカウント変数
+    private float shottimer_1 = 0.0f,shottimer_2 = 0.0f,shottimer_3 = 0.0f,shottimer_4 = 0.0f;
+
+    public GameObject[] bulletposition = new GameObject[4];
 
     void Start()
     {
@@ -19,22 +22,37 @@ public class Base_Sapphire : MonoBehaviour
     
     void Update()
     {
-        shottimer += Time.deltaTime;
-        if(shottimer > shotinterval)
+        shottimer_1 += Time.deltaTime;
+        shottimer_2 += Time.deltaTime;
+        shottimer_3 += Time.deltaTime;
+        shottimer_4 += Time.deltaTime;
+
+        
+
+        //各発射位置に一定距離近づかれたら弾を発射
+
+        //1つ目
+        if (shottimer_1 > shotinterval)
         {
-            foreach(Transform playerspos in PlayerSpawn_Ruby.playerspos)
-            {
-                float distance = Vector3.Distance(transform.position,playerspos.position);
-                if(distance <= rad)
-                {
-                    bulletPool.GetBullet(playerspos.position, Quaternion.identity, isRuby);
-                    shottimer = 0.0f;
-                    break;
-                }
-            }
+            
+        }
+        //2つ目
+        else if (shottimer_2 > shotinterval)
+        {
+            
+        }
+        //3つ目
+        else if (shottimer_3 > shotinterval)
+        {
+            
+        }
+        //4つ目
+        else if (shottimer_4 > shotinterval)
+        {
+            
         }
     }
-
+    //衝突時の処理
     private void OnCollisionEnter2D(Collision2D obj)
     {
         if (obj.gameObject.CompareTag("Bullet"))
@@ -47,7 +65,7 @@ public class Base_Sapphire : MonoBehaviour
                 Debug.LogError("Bulletコンポーネントが見つかりません。");
                 return;
             }
-
+            //2被弾につき1ダメージ受けるようにする
             if (bullet.isRuby_bullet)
             {
                 hitcount++;

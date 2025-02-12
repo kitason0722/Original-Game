@@ -8,9 +8,9 @@ public class Bullet : MonoBehaviour
     protected float lifetime = 0.0f;//弾の生存時間
     protected float maxlifetime = 1.0f;//弾の最大生存時間
     public bool isRuby_bullet = true;//チームの判別
-    private Rigidbody2D rigid2D;
+    protected Rigidbody2D rigid2D;
     public BulletPool bulletPool;
-    protected void Start()
+    public virtual void Start()
     {
         rigid2D = GetComponent<Rigidbody2D>();
     }
@@ -28,13 +28,13 @@ public class Bullet : MonoBehaviour
     }
 
     //弾の撃ち出し
-    public virtual void Fire()
+    public void Fire()
     {
         rigid2D.velocity = transform.up.normalized * bulletspeed;
     }
 
     //弾の削除
-    public void Delete()
+    public virtual void Delete()
     {
         lifetime += Time.deltaTime;
         if(lifetime > maxlifetime)

@@ -374,6 +374,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &459085282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2131824083507008978, guid: 1c58a2c2215800b48ba458d9ae45fb50, type: 3}
+  m_PrefabInstance: {fileID: 2038542058}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,6 +647,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7628397395257848004, guid: 2b80025b3e24df941b59b69d356fdb22, type: 3}
+      propertyPath: bulletPool
+      value: 
+      objectReference: {fileID: 628989160}
+    - target: {fileID: 7628397395257848004, guid: 2b80025b3e24df941b59b69d356fdb22, type: 3}
+      propertyPath: bulletposition.Array.data[0]
+      value: 
+      objectReference: {fileID: 1700965848}
+    - target: {fileID: 7628397395257848004, guid: 2b80025b3e24df941b59b69d356fdb22, type: 3}
+      propertyPath: bulletposition.Array.data[1]
+      value: 
+      objectReference: {fileID: 1532137090}
+    - target: {fileID: 7628397395257848004, guid: 2b80025b3e24df941b59b69d356fdb22, type: 3}
+      propertyPath: bulletposition.Array.data[2]
+      value: 
+      objectReference: {fileID: 1479443608}
+    - target: {fileID: 7628397395257848004, guid: 2b80025b3e24df941b59b69d356fdb22, type: 3}
+      propertyPath: bulletposition.Array.data[3]
+      value: 
+      objectReference: {fileID: 1811359618}
     - target: {fileID: 8085017448922682335, guid: 2b80025b3e24df941b59b69d356fdb22, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.5
@@ -699,6 +724,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b80025b3e24df941b59b69d356fdb22, type: 3}
+--- !u!1 &617141686 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7914768105505943299, guid: 1c58a2c2215800b48ba458d9ae45fb50, type: 3}
+  m_PrefabInstance: {fileID: 2038542058}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,6 +1237,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1038778274 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 551421634344822873, guid: 7e0779bc02659624981b0e8cc70e0d58, type: 3}
+  m_PrefabInstance: {fileID: 111046333524524370}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d21ca4ad6818648afbfd920d696359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1040906076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,6 +1332,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1227919803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5190270222892194586, guid: 1c58a2c2215800b48ba458d9ae45fb50, type: 3}
+  m_PrefabInstance: {fileID: 2038542058}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1331790626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,6 +1421,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1421131413 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2255122880620205906, guid: 1c58a2c2215800b48ba458d9ae45fb50, type: 3}
+  m_PrefabInstance: {fileID: 2038542058}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1479443608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5171570882559243421, guid: 2b80025b3e24df941b59b69d356fdb22, type: 3}
+  m_PrefabInstance: {fileID: 540350042}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1486504259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,6 +1510,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486504259}
   m_CullTransparentMesh: 1
+--- !u!1 &1532137090 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5576259996556222909, guid: 2b80025b3e24df941b59b69d356fdb22, type: 3}
+  m_PrefabInstance: {fileID: 540350042}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1600138442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,6 +1559,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1becf1753e9201f45b7713cb0eab5990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1700965848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 13732255928388793, guid: 2b80025b3e24df941b59b69d356fdb22, type: 3}
+  m_PrefabInstance: {fileID: 540350042}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1748207410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,6 +1648,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1811359618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2457146754799572918, guid: 2b80025b3e24df941b59b69d356fdb22, type: 3}
+  m_PrefabInstance: {fileID: 540350042}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1940238314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,6 +1797,30 @@ PrefabInstance:
       propertyPath: bulletPool
       value: 
       objectReference: {fileID: 628989160}
+    - target: {fileID: 4700648552731769665, guid: 1c58a2c2215800b48ba458d9ae45fb50, type: 3}
+      propertyPath: playerSpawn_Ruby
+      value: 
+      objectReference: {fileID: 1038778274}
+    - target: {fileID: 4700648552731769665, guid: 1c58a2c2215800b48ba458d9ae45fb50, type: 3}
+      propertyPath: bulletposition.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4700648552731769665, guid: 1c58a2c2215800b48ba458d9ae45fb50, type: 3}
+      propertyPath: bulletposition.Array.data[0]
+      value: 
+      objectReference: {fileID: 1227919803}
+    - target: {fileID: 4700648552731769665, guid: 1c58a2c2215800b48ba458d9ae45fb50, type: 3}
+      propertyPath: bulletposition.Array.data[1]
+      value: 
+      objectReference: {fileID: 617141686}
+    - target: {fileID: 4700648552731769665, guid: 1c58a2c2215800b48ba458d9ae45fb50, type: 3}
+      propertyPath: bulletposition.Array.data[2]
+      value: 
+      objectReference: {fileID: 1421131413}
+    - target: {fileID: 4700648552731769665, guid: 1c58a2c2215800b48ba458d9ae45fb50, type: 3}
+      propertyPath: bulletposition.Array.data[3]
+      value: 
+      objectReference: {fileID: 459085282}
     - target: {fileID: 7594842673952262075, guid: 1c58a2c2215800b48ba458d9ae45fb50, type: 3}
       propertyPath: m_IsTrigger
       value: 0

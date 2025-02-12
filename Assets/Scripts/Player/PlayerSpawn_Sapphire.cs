@@ -30,6 +30,7 @@ public class PlayerSpawn_Sapphire : MonoBehaviour
 
             //ƒvƒŒƒCƒ„[‚Ì•Ï”‚Ìİ’è
             PlayerControl playerControl = instance.GetComponent<PlayerControl>();
+            playerControl.tag = "Sapphire";
             playerControl.isRuby = false;
             playerControl.isPlayer = false;
 

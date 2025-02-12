@@ -70,7 +70,8 @@ public class BulletPool : MonoBehaviour
         Bullet_Base bullet_Base = bullet_basepool.Dequeue();
         bullet_Base.gameObject.SetActive(true);
 
-        if(isRuby) bullet_Base.isRuby_bullet = true;
+        bullet_Base.BulletBasePosition(pos, rot);
+        if (isRuby) bullet_Base.isRuby_bullet = true;
         else bullet_Base.isRuby_bullet = false;
 
         return bullet_Base;

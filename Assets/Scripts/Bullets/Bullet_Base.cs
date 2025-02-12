@@ -4,26 +4,55 @@ using UnityEngine;
 
 public class Bullet_Base : Bullet
 {
-    
-    private void Start()
+    private Transform target;
+    public override void Start()
     {
-        base.Start();
+        bulletspeed = 10.0f;
         maxlifetime = 2.0f;
+        base.Start();
     }
     
-   private void Update()
+   public override void Update()
     {
-        Fire();
-        base.Delete();
+        if(target != null)Fire();
+        Delete();
     }
 
-    public override void Fire()
+    public void BulletBasePosition(Vector3 pos, Quaternion rot)
     {
-        base.Fire();
+        transform.position = pos;
+        transform.rotation = rot;
+    }
+
+    public void Fire(Transform playerpos)
+    {
+        target = playerpos;
+        if(target == null)
+        {
+            Debug.LogError("target‚ªnull‚Å‚·");
+            return;
+        }
+
+        Vector3 dir = (target.position - transform.position).normalized;
+        rigid2D.velocity = dir * bulletspeed;
+    }
+
+    public override void Delete()
+    {
+        lifetime += Time.deltaTime;
+        if (lifetime > maxlifetime)
+        {
+            bulletPool.CollectBulletBase(this);
+            lifetime = 0.0f;
+        }
     }
 
     protected override void OnCollisionEnter2D(Collision2D obj)
     {
-        base.OnCollisionEnter2D(obj);
+        if (obj.gameObject.CompareTag("Wall"))
+        {
+            bulletPool.CollectBulletBase(this);
+        }
+        else bulletPool.CollectBulletBase(this);
     }
 }
