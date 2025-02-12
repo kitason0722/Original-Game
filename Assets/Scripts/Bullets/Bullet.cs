@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
     }
 
     //弾の撃ち出し
-    public void Fire()
+    public virtual void Fire()
     {
         rigid2D.velocity = transform.up.normalized * bulletspeed;
     }

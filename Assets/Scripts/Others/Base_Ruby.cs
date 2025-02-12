@@ -7,7 +7,7 @@ public class Base_Ruby : MonoBehaviour
     public int hp = 30;//基地のHP
     private int hitcount = 0;//被弾した回数
     [SerializeField] private bool isRuby = true;//チームの判別
-    [SerializeField] private float rad = 10.0f;//検知できる範囲
+    [SerializeField] private float rad = 100.0f;//検知できる範囲
     [SerializeField] private BulletPool bulletPool;
     [SerializeField] private float shotinterval = 0.5f;//弾を打つまでのインターバル
     //各発射位置の弾を打つまでのインターバルのカウント変数
@@ -28,27 +28,65 @@ public class Base_Ruby : MonoBehaviour
         shottimer_3 += Time.deltaTime;
         shottimer_4 += Time.deltaTime;
 
-        //各発射位置に一定距離近づかれたら弾を発射
+        //動的にSapphireチームのプレイヤーを取得
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Sapphire");
 
+        //各発射位置に一定距離近づかれたら弾を発射
         //1つ目
         if (shottimer_1 > shotinterval)
         {
-            
+            foreach (GameObject player in players)
+            {
+                float dis = (bulletposition[0].transform.position - player.transform.position).sqrMagnitude;
+                if (dis <= rad)
+                {
+                    bulletPool.GetBulletBase(bulletposition[0].transform.position, Quaternion.identity, isRuby);
+                    shottimer_1 = 0.0f;
+                    break;
+                }
+            }
         }
         //2つ目
         else if (shottimer_2 > shotinterval)
         {
-            
+            foreach (GameObject player in players)
+            {
+                float dis = (bulletposition[1].transform.position - player.transform.position).sqrMagnitude;
+                if (dis <= rad)
+                {
+                    bulletPool.GetBulletBase(bulletposition[1].transform.position, Quaternion.identity, isRuby);
+                    shottimer_2 = 0.0f;
+                    break;
+                }
+            }
         }
         //3つ目
         else if (shottimer_3 > shotinterval)
         {
-            
+            foreach (GameObject player in players)
+            {
+                float dis = (bulletposition[2].transform.position - player.transform.position).sqrMagnitude;
+                if (dis <= rad)
+                {
+                    bulletPool.GetBulletBase(bulletposition[2].transform.position, Quaternion.identity, isRuby);
+                    shottimer_3 = 0.0f;
+                    break;
+                }
+            }
         }
         //4つ目
         else if (shottimer_4 > shotinterval)
         {
-            
+            foreach (GameObject player in players)
+            {
+                float dis = (bulletposition[3].transform.position - player.transform.position).sqrMagnitude;
+                if (dis <= rad)
+                {
+                    bulletPool.GetBulletBase(bulletposition[3].transform.position, Quaternion.identity, isRuby);
+                    shottimer_4 = 0.0f;
+                    break;
+                }
+            }
         }
     }
 

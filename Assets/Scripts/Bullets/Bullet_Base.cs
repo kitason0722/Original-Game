@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bullet_Base : Bullet
 {
-    private Transform target;
     public override void Start()
     {
         bulletspeed = 10.0f;
@@ -14,7 +13,7 @@ public class Bullet_Base : Bullet
     
    public override void Update()
     {
-        if(target != null)Fire();
+        Fire();
         Delete();
     }
 
@@ -24,17 +23,36 @@ public class Bullet_Base : Bullet
         transform.rotation = rot;
     }
 
-    public void Fire(Transform playerpos)
+    public  override void Fire()
     {
-        target = playerpos;
-        if(target == null)
+        if (isRuby_bullet)//Rubyチームの弾の場合
         {
-            Debug.LogError("targetがnullです");
-            return;
+            Vector3 min = new Vector3();//最小距離を取得
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Sapphire");//Shppireのプレイヤーを取得
+            foreach (GameObject player in players)
+            {
+                Vector3 dis = (transform.position - player.transform.position);
+                if (dis.magnitude < min.magnitude)
+                {
+                    min = dis;
+                }
+            }
+            rigid2D.velocity = min * bulletspeed;//一番近いプレイヤーに向かって追尾
         }
-
-        Vector3 dir = (target.position - transform.position).normalized;
-        rigid2D.velocity = dir * bulletspeed;
+        else//Sapphireチームの弾の場合
+        {
+            Vector3 min = new Vector3();//最小距離を取得
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Ruby");//Rubyのプレイヤーを取得
+            foreach (GameObject player in players)
+            {
+                Vector3 dis = (transform.position - player.transform.position);
+                if (dis.magnitude < min.magnitude)
+                {
+                    min = dis;
+                }
+            }
+            rigid2D.velocity = min * bulletspeed;//一番近いプレイヤーに向かって追尾
+        }
     }
 
     public override void Delete()
