@@ -8,27 +8,28 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private GameObject Timer;//タイマーUI
-    Text timertext;//タイマーのテキスト
+    private GameObject Hp_Ruby, Hp_Sapphire;//HPのUI
+    private Text timertext;//タイマーのテキスト
+    int hp_ruby, hp_sapphire;//HPの数値
     private float timer = 120;//ゲームの制限時間
     private float idletime = 2.0f;//ゲーム終了後の待機時間
+    public bool isRubyWin = false;//Rubyチームの勝利判定
+    public bool draw = false;//引き分け判定
 
     private void Start()
     {
         this.Timer = GameObject.Find("Timer");
         this.timertext = this.Timer.GetComponent<Text>();
 
-        if(Timer == null)
-        {
-            Debug.LogError("Timerオブジェクトが見つかりません。");
-        }
-
-        if (timertext == null)
-        {
-            Debug.LogError("TimerオブジェクトにTextコンポーネントが見つかりません。");
-        }
+        this.Hp_Ruby = GameObject.Find("HP_Ruby");
+        this.Hp_Sapphire = GameObject.Find("HP_Sapphire");
     }
     private void Update()
     {
+        hp_ruby = GameObject.Find("Base_Ruby").GetComponent<Base_Ruby>().hp;
+        hp_sapphire = GameObject.Find("Base_Sapphire").GetComponent<Base_Sapphire>().hp;
+
+        //タイマーの処理
         timer -= Time.deltaTime;
         if (timer > 0)
         {
@@ -39,9 +40,32 @@ public class GameManager : MonoBehaviour
                 this.timertext.fontStyle = FontStyle.Bold;
             }
         }
-        
         else
         {
+            Gameover();
+        }
+
+        //HP表示の処理
+        this.Hp_Ruby.GetComponent<Text>().text = hp_ruby.ToString();
+        this.Hp_Sapphire.GetComponent<Text>().text = hp_sapphire.ToString();
+
+        //デバッグ用
+        //if(Input.GetKey(KeyCode.Y))GameObject.Find("Base_Ruby").GetComponent<Base_Ruby>().hp = 0;
+        //if(Input.GetKey(KeyCode.U))GameObject.Find("Base_Sapphire").GetComponent<Base_Sapphire>().hp = 0;
+        //if(Input.GetKey(KeyCode.I))
+        //{
+        //    draw = true;
+        //    Gameover();
+        //}
+
+        if (hp_ruby <= 0)
+        {
+            isRubyWin = false;
+            Gameover();
+        }
+        else if(hp_sapphire <= 0)
+        {
+            isRubyWin = true;
             Gameover();
         }
     }
@@ -51,6 +75,22 @@ public class GameManager : MonoBehaviour
         idletime -= Time.deltaTime;
         if (idletime < 0)
         {
+            if (hp_ruby > hp_sapphire)
+            {
+                isRubyWin = true;
+            }
+            else if (hp_ruby < hp_sapphire)
+            {
+                isRubyWin = false;
+            }
+            else
+            {
+                draw = true;
+            }
+
+            PlayerPrefs.SetInt("isRubyWin", isRubyWin ? 1 : 0);
+            PlayerPrefs.SetInt("draw", draw ? 1 : 0);
+            PlayerPrefs.Save();
             SceneManager.LoadScene("ResultScene");
         }
     }
