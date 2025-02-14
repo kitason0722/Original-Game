@@ -8,7 +8,7 @@ using UnityEngine.Animations;
 public class PlayerControl : MonoBehaviour
 {
     public int hp = 10;//プレイヤーのHP
-    private const float rotatespeed = 3.0f;//回転速度
+    private const float rotatespeed = 2.5f;//回転速度
     private const float movespeed = 1.5f;//移動速度
     private const float maxspped = 6.0f;//最高移動速度
     private float interval = 0.0f;//弾を打つまでのインターバルのカウント変数
@@ -27,6 +27,8 @@ public class PlayerControl : MonoBehaviour
     public GameObject bulletposition;
     private Rigidbody2D rigid2D;
 
+    public StateMachine stateMachine;
+
      private enum State//プレイヤーの状態
     {
         Active,
@@ -39,6 +41,8 @@ public class PlayerControl : MonoBehaviour
     void Awake()
     {
         rigid2D = GetComponent<Rigidbody2D>();
+        stateMachine = new StateMachine();
+        stateMachine.ChangeState(new ActiveState(this));
     }
 
     private void Update()
@@ -101,15 +105,7 @@ public class PlayerControl : MonoBehaviour
             switch(state)
             {
                 case State.Active:
-                //Move();
-                //if(Input.GetKeyDown(KeyCode.Space))
-                //{
-                //    if(interval > shotinterval)
-                //    {
-                //        Shot();
-                //        interval = 0.0f;
-                //    }
-                //}
+                stateMachine.Update();
                 break;
 
                 case State.Dead:
@@ -174,11 +170,13 @@ public class PlayerControl : MonoBehaviour
         bulletPool.GetBullet(bulletposition.transform.position,transform.rotation,isRuby);
     }
 
+    //プールのセット
     public void SetBulletPool(BulletPool pool)
     {
         bulletPool = pool;
     }
 
+    //衝突時の処理
     protected void OnCollisionEnter2D(Collision2D obj)
     {
         if(obj.gameObject.CompareTag("Bullet"))
