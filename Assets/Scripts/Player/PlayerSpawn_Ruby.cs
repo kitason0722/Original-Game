@@ -64,4 +64,15 @@ public class PlayerSpawn_Ruby : MonoBehaviour
     {
         return players;
     }
+
+    public void RespawnPlayer(PlayerControl player)
+    {
+        // スポーンエリア内の範囲内のランダムな位置を取得
+        Vector2 randompos = Random.insideUnitCircle * radius;
+        Vector3 spawnpos = new Vector3(randompos.x, randompos.y, 0) + transform.position;
+
+        // プレイヤーの位置をリスポーン位置に設定
+        player.transform.position = spawnpos;
+        player.rigid2D.velocity = Vector2.zero;
+    }
 }

@@ -26,6 +26,8 @@ public class PlayerControl : MonoBehaviour
     private BulletPool bulletPool;
     public GameObject bulletposition;
     public Rigidbody2D rigid2D;
+    private PlayerSpawn_Ruby playerSpawn_Ruby;
+    private PlayerSpawn_Sapphire playerSpawn_Sapphire;
     public StateMachine stateMachine;
 
     private AudioSource audioSource;
@@ -42,12 +44,14 @@ public class PlayerControl : MonoBehaviour
 
     private State state = State.Active;
 
-    void Awake()
+    private void Awake()
     {
         rigid2D = GetComponent<Rigidbody2D>();
         stateMachine = new StateMachine();
         stateMachine.TransitionTo(new MoveState(this,false));
         audioSource = GetComponent<AudioSource>();
+        playerSpawn_Ruby = FindObjectOfType<PlayerSpawn_Ruby>();
+        playerSpawn_Sapphire = FindObjectOfType<PlayerSpawn_Sapphire>();
     }
 
     private void Update()
@@ -82,6 +86,8 @@ public class PlayerControl : MonoBehaviour
                 if(_deathinterval > deathinterval)
                 {
                     _deathinterval = 0.0f;
+                    if (isRuby) playerSpawn_Ruby.RespawnPlayer(this);
+                    else playerSpawn_Sapphire.RespawnPlayer(this);
                     state = State.Idle;
                 }
                 break;
@@ -118,6 +124,8 @@ public class PlayerControl : MonoBehaviour
                 if(_deathinterval > deathinterval)
                 {
                     _deathinterval = 0.0f;
+                    if(isRuby)playerSpawn_Ruby.RespawnPlayer(this);
+                    else playerSpawn_Sapphire.RespawnPlayer(this);
                     state = State.Idle;
                 }
                 break;
