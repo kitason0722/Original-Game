@@ -9,10 +9,12 @@ public class MoveState : IState
     private float keepdistance = 5.0f;//基地もしくは敵との間に保ちたい距離
     private float attacktime = 0.3f;//攻撃間隔
     private float attacktimer = 0.0f;
+    private bool attacktoBase;
 
-    public MoveState(PlayerControl player)
+    public MoveState(PlayerControl player,bool target)
     {
         this.player = player;
+        attacktoBase = target;
     }
 
     public void Enter()
@@ -26,7 +28,7 @@ public class MoveState : IState
     {
         //敵の位置を取得
         List<PlayerControl> enemies = new List<PlayerControl>();
-        if(player.isRuby)enemies.AddRange(PlayerSpawn_Sapphire.GetPlayers());
+        if (player.isRuby) enemies.AddRange(PlayerSpawn_Sapphire.GetPlayers());
         else enemies.AddRange(PlayerSpawn_Ruby.GetPlayers());
 
         //一番近い敵までの距離を取得
@@ -49,49 +51,72 @@ public class MoveState : IState
         //近い方の向きを取得
         Vector3 dir;
 
-        if (nearestenemy != null)
+        if (attacktoBase)
         {
-            float distanceToEnemy = Mathf.Sqrt(toenemy_min);
-            if (distanceToEnemy < keepdistance)
+            if (toBase < keepdistance)
             {
-                // 敵から離れる方向に移動
-                dir = (player.transform.position - nearestenemy.transform.position).normalized;
+                //基地から離れる方向に移動
+                dir = (player.transform.position - Base.transform.position).normalized;
                 dir = Quaternion.Euler(0, 0, 45) * dir;
-
+            }
+            else if (toBase > keepdistance)
+            {
+                //基地に近づく方向に移動
+                dir = (Base.transform.position - player.transform.position).normalized;
                 attacktimer += Time.deltaTime;
-                if(attacktimer > attacktime)
+                if (attacktimer > attacktime)
                 {
-                    player.stateMachine.TransitionTo(new AttackState(player, nearestenemy));
+                    player.stateMachine.TransitionTo(new AttackState(player, Base.transform));
                     return;
                 }
             }
-            else if (distanceToEnemy > keepdistance)
-            {
-                attacktimer = 0.0f;
-                // 敵に近づく方向に移動
-                dir = (nearestenemy.transform.position - player.transform.position).normalized;
-            }
             else
             {
-                // 現在の位置を維持
+                //現在の位置を維持
                 dir = player.transform.up;
             }
         }
         else
         {
-            // 敵がいない場合、基地の方向に移動
-            dir = (Base.transform.position - player.transform.position).normalized;
-        }
+            if (nearestenemy != null)
+            {
+                float distancetoEnemy = Mathf.Sqrt(toenemy_min);
+                if (distancetoEnemy < keepdistance)
+                {
+                    // 敵から離れる方向に移動
+                    dir = (player.transform.position - nearestenemy.transform.position).normalized;
+                    dir = Quaternion.Euler(0, 0, 45) * dir;
 
-        //プレイヤーの向きを変更
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        player.transform.rotation = Quaternion.Euler(0, 0, angle - 90);
+                    attacktimer += Time.deltaTime;
+                    if (attacktimer > attacktime)
+                    {
+                        player.stateMachine.TransitionTo(new AttackState(player, nearestenemy.transform));
+                        return;
+                    }
+                }
+                else if (distancetoEnemy > keepdistance)
+                {
+                    attacktimer = 0.0f;
+                    // 敵に近づく方向に移動
+                    dir = (nearestenemy.transform.position - player.transform.position).normalized;
+                }
+                else
+                {
+                    // 現在の位置を維持
+                    dir = player.transform.up;
+                }
 
-        //プレイヤーを移動
-        player.rigid2D.AddForce(player.transform.up * player.movespeed);
-        if (player.rigid2D.velocity.magnitude > player.maxspped)
-        {
-            player.rigid2D.velocity = player.rigid2D.velocity.normalized * player.maxspped;
+                //プレイヤーの向きを変更
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                player.transform.rotation = Quaternion.Euler(0, 0, angle - 90);
+
+                //プレイヤーを移動
+                player.rigid2D.AddForce(player.transform.up * player.movespeed);
+                if (player.rigid2D.velocity.magnitude > player.maxspped)
+                {
+                    player.rigid2D.velocity = player.rigid2D.velocity.normalized * player.maxspped;
+                }
+            }
         }
     }
 

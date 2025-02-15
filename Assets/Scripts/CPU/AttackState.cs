@@ -5,9 +5,10 @@ using UnityEngine;
 public class AttackState : IState
 {
     private PlayerControl player;
-    private PlayerControl target;
+    private Transform target;
     private int shotcount = 0;
-    public AttackState(PlayerControl player,PlayerControl target)
+    private int currenthp;
+    public AttackState(PlayerControl player,Transform target)
     {
         this.player = player;
         this.target = target;
@@ -16,6 +17,7 @@ public class AttackState : IState
     public void Enter()
     {
         player.shotinterval = 1.0f;
+        currenthp = player.hp;
     }
 
     public void Update()
@@ -27,7 +29,7 @@ public class AttackState : IState
             if (target != null)
             {
                 // ターゲットの方向に向かって弾を撃つ
-                Vector3 dir = (target.transform.position - player.transform.position).normalized;
+                Vector3 dir = (target.position - player.transform.position).normalized;
                 float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                 player.transform.rotation = Quaternion.Euler(0, 0, angle - 90);
                 player.Shot();
@@ -36,9 +38,10 @@ public class AttackState : IState
             shotcount++;
         }
 
-        if(shotcount >= 5)
+        //3回攻撃する、もしくは2ダメージ以上受けたら待機状態に遷移
+        if (shotcount >= 3 || (currenthp - player.hp) >= 2)
         {
-            player.stateMachine.TransitionTo(new MoveState(player));
+            player.stateMachine.TransitionTo(new IdleState(player));
         }
 
     }

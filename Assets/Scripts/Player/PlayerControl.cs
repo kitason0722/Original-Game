@@ -42,7 +42,7 @@ public class PlayerControl : MonoBehaviour
     {
         rigid2D = GetComponent<Rigidbody2D>();
         stateMachine = new StateMachine();
-        stateMachine.TransitionTo(new MoveState(this));
+        stateMachine.TransitionTo(new MoveState(this,false));
     }
 
     private void Update()
