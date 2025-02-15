@@ -26,10 +26,14 @@ public class PlayerControl : MonoBehaviour
     private BulletPool bulletPool;
     public GameObject bulletposition;
     public Rigidbody2D rigid2D;
-
     public StateMachine stateMachine;
 
-     private enum State//プレイヤーの状態
+    private AudioSource audioSource;
+    public AudioClip shotse;
+    public AudioClip damagese1;
+    public AudioClip damagese2;
+
+    private enum State//プレイヤーの状態
     {
         Active,
         Idle,
@@ -43,6 +47,7 @@ public class PlayerControl : MonoBehaviour
         rigid2D = GetComponent<Rigidbody2D>();
         stateMachine = new StateMachine();
         stateMachine.TransitionTo(new MoveState(this,false));
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -168,6 +173,7 @@ public class PlayerControl : MonoBehaviour
     public void Shot()
     {
         bulletPool.GetBullet(bulletposition.transform.position,transform.rotation,isRuby);
+        audioSource.PlayOneShot(shotse);
     }
 
     //プールのセット
@@ -192,8 +198,13 @@ public class PlayerControl : MonoBehaviour
             if ((isRuby == true && bullet.isRuby_bullet == false) || (isRuby == false && bullet.isRuby_bullet == true))
             {
                 hp -= 1;
+                if(0 < hp && hp <10)
+                {
+                    audioSource.PlayOneShot(damagese1);
+                }
                 if (hp <= 0)
                 {
+                    audioSource.PlayOneShot(damagese2);
                     hp = 0;
                     state = State.Dead;
                 }

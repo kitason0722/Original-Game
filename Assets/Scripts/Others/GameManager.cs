@@ -16,13 +16,22 @@ public class GameManager : MonoBehaviour
     public bool isRubyWin = false;//Rubyƒ`[ƒ€‚ÌŸ—˜”»’è
     public bool draw = false;//ˆø‚«•ª‚¯”»’è
 
-    private void Start()
+    private AudioSource audioSource;
+    public AudioClip bgm_game;
+
+    private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+
         this.Timer = GameObject.Find("Timer");
         this.timertext = this.Timer.GetComponent<Text>();
 
         this.Hp_Ruby = GameObject.Find("HP_Ruby");
         this.Hp_Sapphire = GameObject.Find("HP_Sapphire");
+    }
+    private void Start()
+    {
+        PlayBGM();
     }
     private void Update()
     {
@@ -93,5 +102,13 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.Save();
             SceneManager.LoadScene("ResultScene");
         }
+    }
+
+    //BGM‚ÌŠÇ—
+    public void PlayBGM()
+    {
+        audioSource.clip = bgm_game;
+        audioSource.loop = true;
+        audioSource.Play();
     }
 }

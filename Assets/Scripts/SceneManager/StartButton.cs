@@ -7,6 +7,7 @@ public class StartButton : MonoBehaviour
 {
     public void OnClick_StartButton()
     {
+        AudioManager.Instance.StopBGM();
         SceneManager.LoadScene("GameScene");
     }
 }
