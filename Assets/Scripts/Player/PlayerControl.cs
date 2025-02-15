@@ -8,11 +8,11 @@ using UnityEngine.Animations;
 public class PlayerControl : MonoBehaviour
 {
     public int hp = 10;//プレイヤーのHP
-    private const float rotatespeed = 2.5f;//回転速度
-    private const float movespeed = 1.5f;//移動速度
-    private const float maxspped = 6.0f;//最高移動速度
-    private float interval = 0.0f;//弾を打つまでのインターバルのカウント変数
-    private float shotinterval = 0.5f;//弾を打つまでのインターバル
+    public float rotatespeed = 2.5f;//回転速度
+    public float movespeed = 1.5f;//移動速度
+    public float maxspped = 6.0f;//最高移動速度
+    public float interval = 0.0f;//弾を打つまでのインターバルのカウント変数
+    public float shotinterval = 0.5f;//弾を打つまでのインターバル
     public bool isPlayer = true;//プレイヤーかどうか
     public bool isRuby = true;//チームの判別
     public Vector3 dir;//プレイヤーが向いている方向
@@ -25,7 +25,7 @@ public class PlayerControl : MonoBehaviour
 
     private BulletPool bulletPool;
     public GameObject bulletposition;
-    private Rigidbody2D rigid2D;
+    public Rigidbody2D rigid2D;
 
     public StateMachine stateMachine;
 
@@ -42,7 +42,7 @@ public class PlayerControl : MonoBehaviour
     {
         rigid2D = GetComponent<Rigidbody2D>();
         stateMachine = new StateMachine();
-        stateMachine.ChangeState(new ActiveState(this));
+        stateMachine.TransitionTo(new MoveState(this));
     }
 
     private void Update()
@@ -165,7 +165,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     //弾の撃ち出し
-    protected void Shot()
+    public void Shot()
     {
         bulletPool.GetBullet(bulletposition.transform.position,transform.rotation,isRuby);
     }

@@ -1,25 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachine : MonoBehaviour
+[Serializable]
+public class StateMachine
 {
-    private IState currentState;
+    public IState currentState;
 
-    public void ChangeState(IState newState)
+    public void Init_State(IState startState)
     {
-        if (currentState != null)
+        currentState = startState;
+        startState.Enter();
+    }
+
+    public void TransitionTo(IState nextState)
+    {
+        if(currentState != null)
         {
             currentState.Exit();
         }
-        currentState = newState;
-        currentState.Enter();
+        
+        currentState = nextState;
+        nextState.Enter();
     }
+
     public void Update()
     {
         if(currentState != null)
         {
-            currentState.Execute();
+            currentState.Update();
         }
     }
 }

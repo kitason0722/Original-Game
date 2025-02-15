@@ -33,61 +33,61 @@ public class Base_Ruby : MonoBehaviour
 
         //Še”­ŽËˆÊ’u‚Éˆê’è‹——£‹ß‚Ã‚©‚ê‚½‚ç’e‚ð”­ŽË
         //1‚Â–Ú
-        if (shottimer_1 > shotinterval)
-        {
-            foreach (GameObject player in players)
-            {
-                float dis = (bulletposition[0].transform.position - player.transform.position).sqrMagnitude;
-                if (dis <= rad)
-                {
-                    bulletPool.GetBulletBase(bulletposition[0].transform.position, Quaternion.identity, isRuby);
-                    shottimer_1 = 0.0f;
-                    break;
-                }
-            }
-        }
+        //if (shottimer_1 > shotinterval)
+        //{
+        //    foreach (GameObject player in players)
+        //    {
+        //        float dis = (bulletposition[0].transform.position - player.transform.position).sqrMagnitude;
+        //        if (dis <= rad)
+        //        {
+        //            bulletPool.GetBulletBase(bulletposition[0].transform.position, Quaternion.identity, isRuby);
+        //            shottimer_1 = 0.0f;
+        //            break;
+        //        }
+        //    }
+        //}
         //2‚Â–Ú
-        else if (shottimer_2 > shotinterval)
-        {
-            foreach (GameObject player in players)
-            {
-                float dis = (bulletposition[1].transform.position - player.transform.position).sqrMagnitude;
-                if (dis <= rad)
-                {
-                    bulletPool.GetBulletBase(bulletposition[1].transform.position, Quaternion.identity, isRuby);
-                    shottimer_2 = 0.0f;
-                    break;
-                }
-            }
-        }
+        //else if (shottimer_2 > shotinterval)
+        //{
+        //    foreach (GameObject player in players)
+        //    {
+        //        float dis = (bulletposition[1].transform.position - player.transform.position).sqrMagnitude;
+        //        if (dis <= rad)
+        //        {
+        //            bulletPool.GetBulletBase(bulletposition[1].transform.position, Quaternion.identity, isRuby);
+        //            shottimer_2 = 0.0f;
+        //            break;
+        //        }
+        //    }
+        //}
         //3‚Â–Ú
-        else if (shottimer_3 > shotinterval)
-        {
-            foreach (GameObject player in players)
-            {
-                float dis = (bulletposition[2].transform.position - player.transform.position).sqrMagnitude;
-                if (dis <= rad)
-                {
-                    bulletPool.GetBulletBase(bulletposition[2].transform.position, Quaternion.identity, isRuby);
-                    shottimer_3 = 0.0f;
-                    break;
-                }
-            }
-        }
+        //else if (shottimer_3 > shotinterval)
+        //{
+        //    foreach (GameObject player in players)
+        //    {
+        //        float dis = (bulletposition[2].transform.position - player.transform.position).sqrMagnitude;
+        //        if (dis <= rad)
+        //        {
+        //            bulletPool.GetBulletBase(bulletposition[2].transform.position, Quaternion.identity, isRuby);
+        //            shottimer_3 = 0.0f;
+        //            break;
+        //        }
+        //    }
+        //}
         //4‚Â–Ú
-        else if (shottimer_4 > shotinterval)
-        {
-            foreach (GameObject player in players)
-            {
-                float dis = (bulletposition[3].transform.position - player.transform.position).sqrMagnitude;
-                if (dis <= rad)
-                {
-                    bulletPool.GetBulletBase(bulletposition[3].transform.position, Quaternion.identity, isRuby);
-                    shottimer_4 = 0.0f;
-                    break;
-                }
-            }
-        }
+        //else if (shottimer_4 > shotinterval)
+        //{
+        //    foreach (GameObject player in players)
+        //    {
+        //        float dis = (bulletposition[3].transform.position - player.transform.position).sqrMagnitude;
+        //        if (dis <= rad)
+        //        {
+        //            bulletPool.GetBulletBase(bulletposition[3].transform.position, Quaternion.identity, isRuby);
+        //            shottimer_4 = 0.0f;
+        //            break;
+        //        }
+        //    }
+        //}
     }
 
     private void OnCollisionEnter2D(Collision2D obj)

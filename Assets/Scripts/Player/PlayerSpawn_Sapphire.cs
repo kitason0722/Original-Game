@@ -8,6 +8,9 @@ public class PlayerSpawn_Sapphire : MonoBehaviour
     [SerializeField] private BulletPool bulletPool;//弾のプール
     [SerializeField] private float radius = 3.0f;//プレイヤーの生成半径
     private int playersize = 4;//プレイヤーの数
+
+    public static List<PlayerControl> players = new List<PlayerControl>();
+
     private void Awake()
     {
         for (int i = 0; i < playersize; i++)
@@ -17,7 +20,7 @@ public class PlayerSpawn_Sapphire : MonoBehaviour
             Vector3 spawnpos = new Vector3(randompos.x, randompos.y, 0) + transform.position;
 
             //プレイヤーの生成
-            GameObject instance = Instantiate(playerprefab, spawnpos, transform.rotation,transform);
+            GameObject instance = Instantiate(playerprefab, spawnpos, transform.rotation, transform);
             instance.name = $"{playerprefab.name}_{i}";
 
             //ローカルスケールをリセット
@@ -43,6 +46,14 @@ public class PlayerSpawn_Sapphire : MonoBehaviour
             {
                 Debug.LogError("PlayerControlコンポーネントが見つかりません。");
             }
+
+            //プレイヤーの位置をリストに追加
+            players.Add(playerControl);
         }
+    }
+
+    public static List<PlayerControl> GetPlayers()
+    {
+        return players;
     }
 }

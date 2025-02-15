@@ -134,10 +134,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
+  movespeed: 1.5
+  maxspped: 6
   isPlayer: 1
+  isRuby: 1
   dir: {x: 0, y: 0, z: 0}
   flash: {fileID: 2351584673235766609}
   bulletposition: {fileID: 2635298223383559472}
+  rigid2D: {fileID: 0}
 --- !u!50 &6980590562347127145
 Rigidbody2D:
   serializedVersion: 4

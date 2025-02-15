@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : IState
+public class IdleState : IState
 {
     private PlayerControl player;
 
-    public Move(PlayerControl player)
+    public IdleState(PlayerControl player)
     {
         this.player = player;
     }
 
     public void Enter()
     {
-        
+
     }
 
-    public void Execute()
+    public void Update()
     {
 
     }
@@ -25,5 +25,4 @@ public class Move : IState
     {
 
     }
-
 }

@@ -9,7 +9,7 @@ public class PlayerSpawn_Ruby : MonoBehaviour
     [SerializeField] private float radius = 3.0f;//プレイヤーの生成半径
     private int playersize = 4;//プレイヤーの数
 
-    public static List<Transform> playerspos = new List<Transform>();
+    public static List<PlayerControl> players = new List<PlayerControl>();
 
     private void Awake()
     {
@@ -49,7 +49,12 @@ public class PlayerSpawn_Ruby : MonoBehaviour
             }
 
             //プレイヤーの位置をリストに追加
-            playerspos.Add(instance.transform);
+            players.Add(playerControl);
         }
+    }
+
+    public static List<PlayerControl>GetPlayers()
+    {
+        return players;
     }
 }
