@@ -48,6 +48,13 @@ public class PlayerSpawn_Ruby : MonoBehaviour
                 Debug.LogError("PlayerControlコンポーネントが見つかりません。");
             }
 
+            // プレイヤーを判別できるように少し色を変更
+            SpriteRenderer spriteRenderer = instance.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = new Color(1.0f, 0.5f, 0.5f); // 赤っぽい色に設定
+            }
+
             //プレイヤーの位置をリストに追加
             players.Add(playerControl);
         }

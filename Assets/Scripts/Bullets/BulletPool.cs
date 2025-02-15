@@ -52,8 +52,29 @@ public class BulletPool : MonoBehaviour
         bullet.gameObject.SetActive(true);
 
         bullet.BulletPosition(pos,rot);
-        if(isRuby) bullet.isRuby_bullet = true;
-        else bullet.isRuby_bullet = false;
+
+        if (isRuby)
+        {
+            bullet.isRuby_bullet = true;
+
+            //弾の色を変更
+            SpriteRenderer spriteRenderer = bullet.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = new Color(1.0f, 0.5f, 0.5f); // 赤っぽい色に設定
+            }
+        }
+        else
+        {
+            bullet.isRuby_bullet = false;
+
+            //弾の色を変更
+            SpriteRenderer spriteRenderer = bullet.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = new Color(0.5f, 0.5f, 1.0f); // 青っぽい色に設定
+            }
+        }
 
         return bullet;
     }
@@ -71,8 +92,29 @@ public class BulletPool : MonoBehaviour
         bullet_Base.gameObject.SetActive(true);
 
         bullet_Base.BulletBasePosition(pos, rot);
-        if (isRuby) bullet_Base.isRuby_bullet = true;
-        else bullet_Base.isRuby_bullet = false;
+
+        if (isRuby)
+        {
+            bullet_Base.isRuby_bullet = true;
+
+            //弾の色を変更
+            SpriteRenderer spriteRenderer = bullet_Base.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = new Color(1.0f, 0.5f, 0.5f); // 赤っぽい色に設定
+            }
+        }
+        else
+        {
+            bullet_Base.isRuby_bullet = false;
+
+            //弾の色を変更
+            SpriteRenderer spriteRenderer = bullet_Base.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = new Color(0.5f, 0.5f, 1.0f); // 青っぽい色に設定
+            }
+        }
 
         return bullet_Base;
     }
