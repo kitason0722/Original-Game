@@ -6,7 +6,7 @@ public class Bullet_Base : Bullet
 {
     public override void Start()
     {
-        bulletspeed = 10.0f;
+        bulletspeed = 8.0f;
         maxlifetime = 2.0f;
         base.Start();
     }
@@ -20,38 +20,47 @@ public class Bullet_Base : Bullet
     public void BulletBasePosition(Vector3 pos, Quaternion rot)
     {
         transform.position = pos;
-        transform.rotation = rot;
+        if(!isRuby_bullet) transform.rotation = Quaternion.Euler(0, 0, rot.eulerAngles.z + 180);
+        else transform.rotation = rot;
     }
 
     public  override void Fire()
     {
         if (isRuby_bullet)//Rubyチームの弾の場合
         {
-            Vector3 min = new Vector3();//最小距離を取得
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Sapphire");//Shppireのプレイヤーを取得
-            foreach (GameObject player in players)
+            Vector3 min = new Vector3(99999,99999,99999);//最小距離を取得
+
+            //動的にSapphireチームのプレイヤーを取得
+            List<PlayerControl> enemies = new List<PlayerControl>();
+            enemies.AddRange(PlayerSpawn_Sapphire.GetPlayers());
+
+            foreach (PlayerControl enemy in enemies)
             {
-                Vector3 dis = (transform.position - player.transform.position);
+                Vector3 dis = (transform.position - enemy.transform.position);
                 if (dis.magnitude < min.magnitude)
                 {
                     min = dis;
                 }
             }
-            rigid2D.velocity = min * bulletspeed;//一番近いプレイヤーに向かって追尾
+            rigid2D.velocity = min.normalized * bulletspeed;//一番近いプレイヤーに向かって追尾
         }
         else//Sapphireチームの弾の場合
         {
             Vector3 min = new Vector3();//最小距離を取得
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Ruby");//Rubyのプレイヤーを取得
-            foreach (GameObject player in players)
+
+            //動的にRubyチームのプレイヤーを取得
+            List<PlayerControl> enemies = new List<PlayerControl>();
+            enemies.AddRange(PlayerSpawn_Ruby.GetPlayers());
+
+            foreach (PlayerControl enemy in enemies)
             {
-                Vector3 dis = (transform.position - player.transform.position);
+                Vector3 dis = (transform.position - enemy.transform.position);
                 if (dis.magnitude < min.magnitude)
                 {
                     min = dis;
                 }
             }
-            rigid2D.velocity = min * bulletspeed;//一番近いプレイヤーに向かって追尾
+            rigid2D.velocity = min.normalized * bulletspeed;//一番近いプレイヤーに向かって追尾
         }
     }
 
