@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private GameObject Timer;//タイマーUI
-    private GameObject Hp_Ruby, Hp_Sapphire;//HPのUI
+    private GameObject Hp_Ruby, Hp_Sapphire,Finish;//HPのUI
     private Text timertext;//タイマーのテキスト
     int hp_ruby, hp_sapphire;//HPの数値
     private float timer = 120;//ゲームの制限時間
@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
 
         this.Hp_Ruby = GameObject.Find("HP_Ruby");
         this.Hp_Sapphire = GameObject.Find("HP_Sapphire");
+
+        this.Finish = GameObject.Find("Finish");
+        this.Finish.SetActive(false);
     }
     private void Start()
     {
@@ -61,11 +64,11 @@ public class GameManager : MonoBehaviour
         //デバッグ用
         //if(Input.GetKey(KeyCode.Y))GameObject.Find("Base_Ruby").GetComponent<Base_Ruby>().hp = 0;
         //if(Input.GetKey(KeyCode.U))GameObject.Find("Base_Sapphire").GetComponent<Base_Sapphire>().hp = 0;
-        if (Input.GetKey(KeyCode.I))
-        {
-            draw = true;
-            Gameover();
-        }
+        //if (Input.GetKey(KeyCode.I))
+        //{
+        //    draw = true;
+        //    Gameover();
+        //}
 
         if (hp_ruby <= 0)
         {
@@ -82,6 +85,9 @@ public class GameManager : MonoBehaviour
     private void Gameover()
     {
         idletime -= Time.deltaTime;
+        this.Finish.SetActive(true);
+        StopBGM();
+
         if (idletime < 0)
         {
             if (hp_ruby > hp_sapphire)
@@ -110,5 +116,13 @@ public class GameManager : MonoBehaviour
         audioSource.clip = bgm_game;
         audioSource.loop = true;
         audioSource.Play();
+    }
+
+    public void StopBGM()
+    {
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
     }
 }
