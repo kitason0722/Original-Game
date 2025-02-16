@@ -8,7 +8,8 @@ public class MainCamera : MonoBehaviour
 
     private void Start()
     {
-        PlayerControl[] players = FindObjectsOfType<PlayerControl>();//生成されたプレイヤーを全て取得
+        List<PlayerControl> players = new List<PlayerControl>();//Rubyチームのプレイヤーを取得
+        players.AddRange(PlayerSpawn_Ruby.GetPlayers());
 
         //isPlayerがtrueのプレイヤーを取得
         foreach (PlayerControl p in players)
@@ -25,8 +26,9 @@ public class MainCamera : MonoBehaviour
             Debug.LogError("isPlayerがtrueのプレイヤーが見つかりません。");
         }
     }
+
     private void Update()
     {
-        transform.position = new Vector3(player.position.x,player.position.y+2,-10f);
+        transform.position = new Vector3(player.position.x,player.position.y,-10f);
     }
 }

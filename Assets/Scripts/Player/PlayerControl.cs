@@ -30,6 +30,10 @@ public class PlayerControl : MonoBehaviour
     private PlayerSpawn_Sapphire playerSpawn_Sapphire;
     public StateMachine stateMachine;
 
+    [SerializeField] private GameObject arrowprefab;
+    private List<GameObject> arrows = new List<GameObject>();
+    private float arrowrad = 2.0f;
+
     private AudioSource audioSource;
     public AudioClip shotse;
     public AudioClip damagese1;
@@ -54,6 +58,19 @@ public class PlayerControl : MonoBehaviour
         playerSpawn_Sapphire = FindObjectOfType<PlayerSpawn_Sapphire>();
     }
 
+    private void Start()
+    {
+        // 動的にSapphireチームのプレイヤーを取得
+        List<PlayerControl> enemies = new List<PlayerControl>();
+        enemies.AddRange(PlayerSpawn_Sapphire.GetPlayers());
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            GameObject arrow = Instantiate(arrowprefab, transform);
+            arrow.SetActive(false);
+            arrows.Add(arrow);
+        }
+    }
+
     private void Update()
     {
         dir = transform.up.normalized;//プレイヤーの向いている方向を常に取得
@@ -65,6 +82,8 @@ public class PlayerControl : MonoBehaviour
             //HPゲージ確認用
             //if (Input.GetKeyDown(KeyCode.O)) if (hp > 0) hp--;
             //if (Input.GetKeyDown(KeyCode.P)) if (hp < 10) hp++;
+
+            ArrowShow();
 
             switch (state)
             {
@@ -190,6 +209,29 @@ public class PlayerControl : MonoBehaviour
         bulletPool = pool;
     }
 
+    // 矢印の表示
+    private void ArrowShow()
+    {
+        // 動的にSapphireチームのプレイヤーを取得
+        List<PlayerControl> enemies = new List<PlayerControl>();
+        enemies.AddRange(PlayerSpawn_Sapphire.GetPlayers());
+
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            PlayerControl enemy = enemies[i];
+            if (enemy == null) continue;
+
+            Vector3 dir = (enemy.transform.position - transform.position).normalized;
+
+            Vector3 arrowpos = transform.position + dir * arrowrad;
+            arrows[i].transform.position = new Vector3(arrowpos.x, arrowpos.y, 0);
+
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            arrows[i].transform.rotation = Quaternion.Euler(0, 0, angle - 90);
+            arrows[i].SetActive(true);
+        }
+    }
+    
     //衝突時の処理
     protected void OnCollisionEnter2D(Collision2D obj)
     {

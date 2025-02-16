@@ -634,6 +634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  arrowprefab: {fileID: 8555935382233574016, guid: aa220a6cf12382949bc5bddfbff2927c, type: 3}
 --- !u!1 &525989901
 GameObject:
   m_ObjectHideFlags: 0

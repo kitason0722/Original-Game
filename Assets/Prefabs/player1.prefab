@@ -146,6 +146,7 @@ MonoBehaviour:
   flash: {fileID: 2351584673235766609}
   bulletposition: {fileID: 2635298223383559472}
   rigid2D: {fileID: 0}
+  arrowprefab: {fileID: 8555935382233574016, guid: aa220a6cf12382949bc5bddfbff2927c, type: 3}
   shotse: {fileID: 8300000, guid: 62adad29a36f5d245a17fa249df1dc4f, type: 3}
   damagese1: {fileID: 8300000, guid: 094be873fa6806c499c9feff2b7856d7, type: 3}
   damagese2: {fileID: 8300000, guid: 38429a15ef328574abe955452106e881, type: 3}

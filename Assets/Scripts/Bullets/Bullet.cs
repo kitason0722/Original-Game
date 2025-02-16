@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     protected float bulletspeed = 10.0f;//弾速
     protected float lifetime = 0.0f;//弾の生存時間
-    protected float maxlifetime = 1.0f;//弾の最大生存時間
+    protected float maxlifetime = 1.5f;//弾の最大生存時間
     public bool isRuby_bullet = true;//チームの判別
     protected Rigidbody2D rigid2D;
     public BulletPool bulletPool;
