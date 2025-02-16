@@ -61,11 +61,11 @@ public class GameManager : MonoBehaviour
         //デバッグ用
         //if(Input.GetKey(KeyCode.Y))GameObject.Find("Base_Ruby").GetComponent<Base_Ruby>().hp = 0;
         //if(Input.GetKey(KeyCode.U))GameObject.Find("Base_Sapphire").GetComponent<Base_Sapphire>().hp = 0;
-        //if(Input.GetKey(KeyCode.I))
-        //{
-        //    draw = true;
-        //    Gameover();
-        //}
+        if (Input.GetKey(KeyCode.I))
+        {
+            draw = true;
+            Gameover();
+        }
 
         if (hp_ruby <= 0)
         {

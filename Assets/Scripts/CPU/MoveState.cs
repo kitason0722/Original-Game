@@ -7,7 +7,7 @@ public class MoveState : IState
     private PlayerControl player;
     private GameObject Base;
     private float keepdistance = 5.0f;//Šî’n‚à‚µ‚­‚Í“G‚Æ‚ÌŠÔ‚É•Û‚¿‚½‚¢‹——£
-    private float attacktime = 0.3f;//UŒ‚ŠÔŠu
+    private float attacktime = 0.75f;//UŒ‚ŠÔŠu
     private float attacktimer = 0.0f;
     private bool attacktoBase;
 
@@ -37,6 +37,7 @@ public class MoveState : IState
 
         foreach (PlayerControl enemy in enemies)
         {
+            if (enemy == null) continue;
             float toenemy = (player.transform.position - enemy.transform.position).sqrMagnitude;
             if (toenemy < toenemy_min)
             {

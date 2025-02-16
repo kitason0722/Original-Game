@@ -38,6 +38,7 @@ public class Base_Ruby : MonoBehaviour
         {
             foreach (PlayerControl enemy in enemies)
             {
+                if (enemy == null) continue;
                 float dis = (bulletposition[0].transform.position - enemy.transform.position).sqrMagnitude;
                 if (dis <= rad)
                 {
@@ -52,6 +53,7 @@ public class Base_Ruby : MonoBehaviour
         {
             foreach (PlayerControl enemy in enemies)
             {
+                if (enemy == null) continue;
                 float dis = (bulletposition[1].transform.position - enemy.transform.position).sqrMagnitude;
                 if (dis <= rad)
                 {
@@ -66,6 +68,7 @@ public class Base_Ruby : MonoBehaviour
         {
             foreach (PlayerControl enemy in enemies)
             {
+                if (enemy == null) continue;
                 float dis = (bulletposition[2].transform.position - enemy.transform.position).sqrMagnitude;
                 if (dis <= rad)
                 {
@@ -80,6 +83,7 @@ public class Base_Ruby : MonoBehaviour
         {
             foreach (PlayerControl enemy in enemies)
             {
+                if (enemy == null) continue;
                 float dis = (bulletposition[3].transform.position - enemy.transform.position).sqrMagnitude;
                 if (dis <= rad)
                 {

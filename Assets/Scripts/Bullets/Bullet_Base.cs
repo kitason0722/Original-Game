@@ -36,6 +36,7 @@ public class Bullet_Base : Bullet
 
             foreach (PlayerControl enemy in enemies)
             {
+                if (enemy == null) continue;
                 Vector3 dis = (transform.position - enemy.transform.position);
                 if (dis.magnitude < min.magnitude)
                 {
@@ -46,7 +47,7 @@ public class Bullet_Base : Bullet
         }
         else//Sapphireチームの弾の場合
         {
-            Vector3 min = new Vector3();//最小距離を取得
+            Vector3 min = new Vector3(99999,99999,99999);//最小距離を取得
 
             //動的にRubyチームのプレイヤーを取得
             List<PlayerControl> enemies = new List<PlayerControl>();
@@ -54,6 +55,7 @@ public class Bullet_Base : Bullet
 
             foreach (PlayerControl enemy in enemies)
             {
+                if (enemy == null) continue;
                 Vector3 dis = (transform.position - enemy.transform.position);
                 if (dis.magnitude < min.magnitude)
                 {
