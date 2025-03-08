@@ -57,6 +57,7 @@ public class PlayerSpawn_Sapphire : MonoBehaviour
             //プレイヤーの位置をリストに追加
             players.Add(playerControl);
         }
+        Debug.Log("Sapphireチームのプレイヤーを生成しました。");
     }
 
     public static List<PlayerControl> GetPlayers()

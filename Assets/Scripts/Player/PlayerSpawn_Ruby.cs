@@ -58,6 +58,7 @@ public class PlayerSpawn_Ruby : MonoBehaviour
             //プレイヤーの位置をリストに追加
             players.Add(playerControl);
         }
+        Debug.Log("Rubyチームのプレイヤーを生成しました。");
     }
 
     public static List<PlayerControl>GetPlayers()
